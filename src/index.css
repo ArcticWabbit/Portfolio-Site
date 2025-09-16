@@ -1,5 +1,35 @@
+/* Local Pixel Game font */
+@font-face {
+  font-family: 'Pixel Game';
+  src: url('./assets/fonts/pixel-game.regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Atarian System";
+  src: url("./assets/fonts/sf-atarian-system.regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tailwind v4 import */
 @import "tailwindcss";
 
+/* Tailwind theme tokens */
+@theme {
+  --font-pixel: "Pixel Game", monospace;
+  --font-body: "Atarian System", sans-serif;
+  --color-brand: #1A786D;
+
+  --text-display: 7rem;
+  --text-heading: 2.25rem;
+  --text-body: 1.25rem;
+}
+
+/* Base styles */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -15,15 +45,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Links */
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--color-brand);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--color-brand);
 }
 
+/* Body */
 body {
   margin: 0;
   display: flex;
@@ -32,11 +64,13 @@ body {
   min-height: 100vh;
 }
 
+/* Headings */
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
+/* Buttons */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -49,20 +83,21 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--color-brand);
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Light mode overrides */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: var(--color-brand);
   }
   button {
     background-color: #f9f9f9;
