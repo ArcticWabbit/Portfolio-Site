@@ -9,9 +9,9 @@ const GITHUB = "https://github.com/ArcticWabbit";
 const EMAIL = "mmahin@svsu.edu";
 const PHONE = "(989) 372-5691";
 const RESUME_URL = "/Mirza_Resume_2025.docx";
-// If you host the background in /public/bg.png, set BACKGROUND_URL = "/bg.png"
-const BACKGROUND_URL = "/fallen_kingdom_3840x2160.png"; // for local preview you may need to swap to a public URL
-const YT_VIDEO_ID = "dQw4w9WgXcQ"; // replace with your demo video id (placeholder)
+// If background is hosted in /public/bg.png, set BACKGROUND_URL = "/bg.png"
+const BACKGROUND_URL = "/fallen_kingdom_3840x2160.png";
+const YT_VIDEO_ID = "dQw4w9WgXcQ"; //!!! replace with demo video id (placeholder)
 
 // Retro pixel font injection (Press Start 2P)
 function usePressStartFont() {
@@ -148,18 +148,6 @@ function InventoryItem({ label, icon }) {
   );
 }
 
-// Day/night theme toggle
-function DayNightToggle({ theme, setTheme }) {
-  return (
-    <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="fixed right-4 top-4 z-50 px-4 py-2 rounded-full border border-yellow-500/50 dark:border-blue-400/50 bg-yellow-100/70 dark:bg-blue-900/40 backdrop-blur text-xs"
-      aria-label="Toggle day/night"
-    >
-      {theme === "dark" ? "🌞 Day" : "🌙 Night"}
-    </button>
-  );
-}
 
 // Pixel divider
 const PixelRule = () => <div className="my-8 h-2 bg-[repeating-linear-gradient(90deg,_#000_0_2px,_transparent_2px_4px)] dark:bg-[repeating-linear-gradient(90deg,_#fff_0_2px,_transparent_2px_4px)] opacity-30"/>;
@@ -233,7 +221,6 @@ export default function App() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40"/>
       </div>
 
-      <DayNightToggle theme={theme} setTheme={setTheme} />
 
       {/* NAV */}
       <nav className="sticky top-0 z-40 backdrop-blur bg-white/50 dark:bg-neutral-900/40 border-b border-neutral-200/50 dark:border-neutral-700/50">
@@ -252,23 +239,44 @@ export default function App() {
         </div>
       </nav>
 
-      {/* LANDING / START SCREEN */}
-      <header id="top" className="min-h-[80vh] flex items-center justify-center text-center px-4">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="max-w-3xl">
-          <h1 className="font-['Press_Start_2P'] text-2xl md:text-4xl tracking-widest drop-shadow-lg">
-            {YOUR_NAME}
-          </h1>
-          <p className="mt-4 text-sm md:text-base opacity-90">Retro RPG-themed portfolio • CS Sophomore • Backend/Game-dev curious</p>
-          <motion.button
-            onClick={() => setEntered(true)}
-            whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}
-            className="mt-8 px-6 py-3 border-4 rounded-xl font-['Press_Start_2P'] text-xs bg-amber-100/80 dark:bg-emerald-900/40 border-amber-400/70 dark:border-emerald-400/60 shadow-[0_0_0_4px_rgba(0,0,0,0.2)]"
-          >
-            ▶ PRESS START
-          </motion.button>
-          <div className="mt-6 text-xs opacity-70">Use ↑ ↑ ↓ ↓ ← → ← → B A for a secret.</div>
-        </motion.div>
-      </header>
+{/* LANDING / START SCREEN */}
+<header id="top" className="min-h-[80vh] flex items-center justify-center text-center px-4">
+<motion.div
+  layout
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  className="max-w-3xl"
+>
+  <h1 className="font-['Press_Start_2P'] text-2xl md:text-4xl tracking-widest drop-shadow-lg">
+    {YOUR_NAME}
+  </h1>
+  <p className="mt-4 text-sm md:text-base opacity-90">
+    Retro RPG-themed portfolio • CS Sophomore • Backend/Game-dev curious
+  </p>
+
+  {/* Reserve button space so text doesn’t jump */}
+  <div className="mt-8 h-16 flex justify-center items-center">
+    <AnimatePresence>
+      {!entered && (
+        <motion.button
+          onClick={() => setEntered(true)}
+          initial={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
+          className="px-6 py-3 border-4 rounded-xl font-['Press_Start_2P'] text-xs bg-amber-100/80 dark:bg-emerald-900/40 border-amber-400/70 dark:border-emerald-400/60 shadow-[0_0_0_4px_rgba(0,0,0,0.2)]"
+        >
+          ▶ PRESS START
+        </motion.button>
+      )}
+    </AnimatePresence>
+  </div>
+</motion.div>
+
+</header>
+
 
       <AnimatePresence>
         {entered && (
@@ -295,7 +303,6 @@ export default function App() {
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                 {skills.map((s) => <InventoryItem key={s.label} {...s} />)}
               </div>
-              <div className="mt-6 text-xs opacity-80">Cert: Harvard CS50 • President’s List (Winter 2024)</div>
             </Section>
 
             <PixelRule />
