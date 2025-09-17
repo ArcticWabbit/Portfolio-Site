@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Dither from './components/Dither';
+import Noise from './components/Noise';
 
 // -------------
 // QUICK CONFIG
@@ -96,19 +97,36 @@ function PongMiniGame({ open, onClose }) {
 function CRTFrame({ videoId }) {
   return (
     <div className="relative max-w-3xl mx-auto mt-8">
-      <div className="aspect-video rounded-[20px] border-8 border-neutral-900 dark:border-neutral-100 bg-black overflow-hidden shadow-[inset_0_0_40px_rgba(0,0,0,0.8)]">
+      <div className="aspect-video rounded-[20px] border-8 border-neutral-900 dark:border-neutral-100 
+             bg-black overflow-hidden relative
+             shadow-[inset_0_0_40px_rgba(0,0,0,0.8),inset_0_0_100px_rgba(0,0,0,0.5)] 
+             transform scale-[1.01] perspective-[600px] rotate-x-[1deg]">
+        {/* YouTube video */}
         <iframe
-          className="w-full h-full" 
-          src={`https://www.youtube.com/embed/${videoId}`} 
-          title="YouTube video" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          className="w-full h-full"
+          src={`https://www.youtube.com/embed/${videoId}`}
+          title="YouTube video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
+
+        {/* Noise overlay */}
+        <Noise
+          patternSize={200}
+          patternScaleX={1}
+          patternScaleY={1}
+          patternRefreshInterval={2}
+          patternAlpha={8}
+        />
+
+        {/* Scanline overlay */}
         <div className="pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_2px)] bg-[length:100%_4px]"></div>
       </div>
+
+      {/* Knobs on the side */}
       <div className="absolute -right-10 top-1/2 -translate-y-1/2 flex flex-col gap-3">
-        <div className="h-8 w-8 rounded-full bg-neutral-800 dark:bg-neutral-200 shadow"/>
-        <div className="h-8 w-8 rounded-full bg-neutral-800 dark:bg-neutral-200 shadow"/>
+        <div className="h-8 w-8 rounded-full bg-neutral-800 dark:bg-neutral-200 shadow" />
+        <div className="h-8 w-8 rounded-full bg-neutral-800 dark:bg-neutral-200 shadow" />
       </div>
     </div>
   );
@@ -266,18 +284,28 @@ export default function App() {
           <motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="backdrop-blur-[1px]">
             
             {/* ABOUT */}
-            <Section id="about" title="About">
-              <div className="max-w-3xl mx-auto border-4 rounded-2xl p-4 bg-neutral-100/90 dark:bg-neutral-800/80 border-neutral-900/70 dark:border-neutral-100/60 shadow-[0_0_0_6px_rgba(0,0,0,0.15)]">
-                <div className="font-pixel text-heading mb-6 tracking-wider text-[var(--brand)]">NPC: Maeen</div>
-                <p className="font-body text-body">
-                  Hey! I’m a Computer Science sophomore who loves making projects that are as fun to use as they are to build. 
-                  I’m aiming for a software/backend role and eventually game dev. I enjoy clean code, attention to detail, and building charming interfaces (like this one!).
-                </p>
-                <div className="mt-3 text-sm opacity-80">
-                  Based in Michigan • Email: <a className="underline text-[var(--brand)]" href={`mailto:${EMAIL}`}>{EMAIL}</a> • Phone: {PHONE}
-                </div>
-              </div>
-            </Section>
+      <Section id="about" title="About">
+        <div className="relative max-w-3xl mx-auto border-4 rounded-2xl p-4 
+                        bg-neutral-100/90 dark:bg-neutral-800/80 
+                        border-neutral-900/70 dark:border-neutral-100/60 
+                        shadow-[0_0_0_6px_rgba(0,0,0,0.15)] overflow-hidden">
+
+          {/* Noise overlay */}
+          <Noise patternSize={200} patternAlpha={8} />
+
+          {/* Content */}
+          <div className="relative z-10">
+            <div className="font-pixel text-heading mb-6 tracking-wider text-[var(--brand)]">NPC: Maeen</div>
+            <p className="font-body text-body">
+              Hey! I’m a Computer Science sophomore who loves making projects that are as fun to use as they are to build. 
+              I’m aiming for a software/backend role and eventually game dev. I enjoy clean code, attention to detail, and building charming interfaces (like this one!).
+            </p>
+            <div className="mt-3 text-sm opacity-80">
+              Based in Michigan • Email: <a className="underline text-[var(--brand)]" href={`mailto:${EMAIL}`}>{EMAIL}</a> • Phone: {PHONE}
+            </div>
+          </div>
+        </div>
+      </Section>
 
             <PixelRule />
 
@@ -318,6 +346,10 @@ export default function App() {
             backgroundPosition: "center",
           }}
         >
+
+            {/* Noise overlay */}
+            <Noise patternAlpha={8} />
+
           <div className="absolute inset-0 bg-black/40 flex flex-col p-4">
             <div className="text-base opacity-60">{p.year}</div>
             <div className="mt-auto font-semibold text-xl">{p.title}</div>
