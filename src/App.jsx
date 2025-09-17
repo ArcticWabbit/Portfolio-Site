@@ -10,7 +10,7 @@ const EMAIL = "mmahin@svsu.edu";
 const PHONE = "(989) 372-5691";
 const RESUME_URL = "/Mirza_Resume_2025.docx";
 const BACKGROUND_URL = "/fallen_kingdom_3840x2160.png";
-const YT_VIDEO_ID = "dQw4w9WgXcQ"; // replace with your demo video id
+const YT_VIDEO_ID = "dQw4w9WgXcQ"; // replace with demo video id
 
 // Konami code listener
 function useKonami(onUnlock) {
@@ -201,7 +201,7 @@ export default function App() {
       MM // PORTFOLIO
     </a>
 
-    {/* Desktop Nav links → body font */}
+    {/* Desktop Nav links */}
     <div className="hidden md:flex gap-4 text-base font-body">
       {[
         ["About","about"],["Skills","skills"],["Experience","experience"],
@@ -213,7 +213,7 @@ export default function App() {
       ))}
     </div>
 
-    {/* GitHub link → body font */}
+    {/* GitHub link */}
     <div className="flex items-center gap-3 text-base font-body">
       <a href={GITHUB} className="hover:text-[var(--brand)]">GitHub</a>
     </div>

@@ -1,12 +1,67 @@
-# React + Vite
+# 🎮 Retro RPG-Themed Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome! This repository contains the source code for my personal **retro/pixel-art/video game–inspired portfolio website**.  
+The site is both a professional portfolio and a creative coding project — designed to feel like you’re playing through a classic RPG, while still presenting my skills and experience in a recruiter-friendly way.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
+👉 [Add deployed site link here once hosted]
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+- **Landing Screen / Start Menu** → styled like a retro game intro with a “Press Start” button.  
+- **About Me** → displayed as an NPC dialogue box.  
+- **Skills Inventory** → grid of RPG-style skill items with pixel icons.  
+- **Experience Timeline** → designed as a level-up progression map.  
+- **Projects / Cartridge Shelf** → each project shown inside a cartridge-style card with pixel aesthetics.  
+- **Embedded YouTube Demo** → displayed in a CRT monitor frame with scanline effects.  
+- **Resume Download (Treasure Chest)** → standout button to grab my CV.  
+- **Achievements / Badges** → certifications & honors styled like RPG unlocks.  
+- **Easter Egg** → Konami code unlocks a secret Pong mini-game.  
+- **Theme Toggle** → day/night cycle instead of a generic switch.  
+- **Responsive & Accessible** → works on desktop and mobile with semantic HTML.
+
+---
+
+## 🛠️ Technologies Used
+This project was built with a modern frontend stack while keeping the retro feel:
+
+- **React (Vite)** → component-based structure, fast dev environment.  
+- **Tailwind CSS v4** → utility-first styling, with custom theme tokens for fonts and brand colors.  
+- **Framer Motion** → smooth transitions, CRT flicker, hover animations.  
+- **Custom Fonts** → [Pixel Game](https://www.dafont.com/pixel-game.font) for titles and branding, paired with a body font for readability.  
+- **React Bits** → curated set of reusable React components (to be used in later iterations for form handling, layout helpers, etc.).  
+- **Konami Code Hook** → small custom hook to detect the Easter egg.  
+- **Canvas API** → used for the Pong mini-game.
+
+---
+
+## 📂 Project Structure
+src/
+├── assets/ # images, background, fonts
+├── components/ # reusable UI pieces (Section, InventoryItem, etc.)
+├── App.jsx # main application
+├── index.css # Tailwind + custom styles
+└── ...
+public/
+├── cartridge.png # cartridge art for project shelf
+└── ...
+
+---
+
+## 🎨 Design Choices
+- **Pixel aesthetic**: heavy use of retro fonts, icons, and pixel art.  
+- **Green brand color (#1A786D)**: consistent across resume button, badges, and accents.  
+- **Accessibility**: text is always contrasted, and all sections work in both dark and light modes.  
+- **Professional + Playful**: While whimsical in theme, the structure follows recruiter expectations (About → Skills → Experience → Projects → Resume → Contact).
+
+---
+
+## 🔮 Future Plans
+- Add more **React Bits** components to streamline forms and layouts.  
+- Expand the **Projects Shelf** with more cartridges and interactive hover states.   
+- Deploy via **GitHub Pages / Vercel / Netlify** for easy recruiter access.
+
+---

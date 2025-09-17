@@ -1,4 +1,3 @@
-/* Local Pixel Game font */
 @font-face {
   font-family: 'Pixel Game';
   src: url('./assets/fonts/pixel-game.regular.otf') format('opentype');
@@ -15,7 +14,6 @@
   font-display: swap;
 }
 
-/* Tailwind v4 import */
 @import "tailwindcss";
 
 /* Tailwind theme tokens */
