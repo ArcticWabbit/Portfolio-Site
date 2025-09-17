@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Dither from './components/Dither';
 
 // -------------
 // QUICK CONFIG
@@ -182,15 +183,18 @@ export default function App() {
   return (
     <div className="min-h-screen text-neutral-900 dark:text-neutral-100 bg-neutral-50 dark:bg-neutral-900 transition-colors">
       {/* BACKGROUND */}
-      <div className="fixed inset-0 -z-10 opacity-90 dark:opacity-60 pointer-events-none">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url(${BACKGROUND_URL})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center 60%',
-          filter: theme === 'dark' ? 'brightness(0.6) contrast(1.1)' : 'brightness(1)',
-        }}/>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40"/>
-      </div>
+      <div className="fixed inset-0 -z-10">
+  <Dither
+    waveColor={[0, 0.7, 0.55]}
+    disableAnimation={false}
+    enableMouseInteraction={true}
+    mouseRadius={0.4}
+    colorNum={8}
+    waveAmplitude={0.3}
+    waveFrequency={3}
+    waveSpeed={0.05}
+  />
+</div>
 
       {/* NAV */}
 {/* NAV */}
