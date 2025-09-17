@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Dither from './components/Dither';
 import Noise from './components/Noise';
+import ASCIIText from './components/ASCIIText';
 
 // -------------
 // QUICK CONFIG
@@ -252,9 +253,15 @@ export default function App() {
           transition={{ duration: 1 }}
           className="max-w-3xl"
         >
-          <h1 className="font-pixel text-display tracking-widest text-[var(--brand)]">
-            {YOUR_NAME}
-          </h1>
+          <div className="relative mx-auto w-[550px] h-48 overflow-visible">
+            <ASCIIText
+              text={YOUR_NAME}
+              enableWaves={true}
+              asciiFontSize={4}   // tweak for density
+              textFontSize={80}
+            />
+          </div>
+
           <p className="font-body text-body opacity-90">
             Retro RPG-themed portfolio • CS Sophomore • Backend/Game-dev curious
           </p>
