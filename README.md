@@ -31,9 +31,8 @@ This project was built with a modern frontend stack while keeping the retro feel
 - **React (Vite)** → component-based structure, fast dev environment.  
 - **Tailwind CSS v4** → utility-first styling, with custom theme tokens for fonts and brand colors.  
 - **Framer Motion** → smooth transitions, CRT flicker, hover animations.  
-- **Custom Fonts** → [Pixel Game](https://www.dafont.com/pixel-game.font) for titles and branding, paired with a body font for readability.  
+- **Custom Fonts** → [Pixel Game](https://www.1001fonts.com/pixel-game-font.html) for titles and branding, paired with a body font for readability.  
 - **React Bits** → curated set of reusable React components (to be used in later iterations for form handling, layout helpers, etc.).  
-- **Konami Code Hook** → small custom hook to detect the Easter egg.  
 - **Canvas API** → used for the Pong mini-game.
 
 ---
