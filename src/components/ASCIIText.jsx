@@ -269,7 +269,8 @@ class CanvAscii {
     const planeW = baseH * textAspect;
     const planeH = baseH;
 
-    this.geometry = new THREE.PlaneGeometry(planeW, planeH, 36, 36);
+    // Multiplying planeW & planeH by 1.2 fixes the last letter of name disappering issue
+    this.geometry = new THREE.PlaneGeometry(planeW * 1.2, planeH * 1.2, 36, 36);
     this.material = new THREE.ShaderMaterial({
       vertexShader,
       fragmentShader,
@@ -343,8 +344,8 @@ class CanvAscii {
     this.texture.needsUpdate = true;
 
     this.mesh.material.uniforms.uTime.value = Math.sin(time);
-
-    this.updateRotation();
+    // Disabled movement
+    // this.updateRotation();
     this.filter.render(this.scene, this.camera);
   }
 

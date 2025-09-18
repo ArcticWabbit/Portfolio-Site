@@ -203,11 +203,12 @@ export default function App() {
     <div className="min-h-screen text-neutral-900 dark:text-neutral-100 bg-neutral-50 dark:bg-neutral-900 transition-colors">
       {/* BACKGROUND */}
       <div className="fixed inset-0 -z-10">
+  // Dither component settings
   <Dither
     waveColor={[0, 0.7, 0.55]}
     disableAnimation={false}
     enableMouseInteraction={true}
-    mouseRadius={0.4}
+    mouseRadius={0.3}
     colorNum={8}
     waveAmplitude={0.3}
     waveFrequency={3}
@@ -253,17 +254,18 @@ export default function App() {
           transition={{ duration: 1 }}
           className="max-w-3xl"
         >
-          <div className="relative mx-auto w-[550px] h-48 overflow-visible">
+          // ASCIIText component settings
+          <div className="relative mx-auto w-[600px] h-44">
             <ASCIIText
               text={YOUR_NAME}
               enableWaves={true}
-              asciiFontSize={4}   // tweak for density
+              asciiFontSize={3}   // tweak for density
               textFontSize={80}
             />
           </div>
 
-          <p className="font-body text-body opacity-90">
-            Retro RPG-themed portfolio • CS Sophomore • Backend/Game-dev curious
+          <p className="font-body text-body opacity-90 -mt-6">
+            Programmer • CS Major • Human
           </p>
 
           <div className="mt-8 h-16 flex justify-center items-center">
@@ -297,6 +299,7 @@ export default function App() {
                         border-neutral-900/70 dark:border-neutral-100/60 
                         shadow-[0_0_0_6px_rgba(0,0,0,0.15)] overflow-hidden">
 
+          // Noise component settings
           {/* Noise overlay */}
           <Noise patternSize={200} patternAlpha={8} />
 
