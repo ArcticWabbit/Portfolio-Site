@@ -123,12 +123,6 @@ function CRTFrame({ videoId }) {
         {/* Scanline overlay */}
         <div className="pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_2px)] bg-[length:100%_4px]"></div>
       </div>
-
-      {/* Knobs on the side */}
-      <div className="absolute -right-10 top-1/2 -translate-y-1/2 flex flex-col gap-3">
-        <div className="h-8 w-8 rounded-full bg-neutral-800 dark:bg-neutral-200 shadow" />
-        <div className="h-8 w-8 rounded-full bg-neutral-800 dark:bg-neutral-200 shadow" />
-      </div>
     </div>
   );
 }
@@ -253,14 +247,13 @@ export default function App() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className="max-w-3xl"
-        >
-          // ASCIIText component settings
+          >
           <div className="relative mx-auto w-[600px] h-44">
             <ASCIIText
               text={YOUR_NAME}
               enableWaves={true}
-              asciiFontSize={3}   // tweak for density
-              textFontSize={80}
+              asciiFontSize={2}   // tweak for density
+              textFontSize={50}
             />
           </div>
 
@@ -350,7 +343,7 @@ export default function App() {
                      shadow-[0_8px_0_#1f2937] group-hover:-translate-y-1 transition-transform font-body 
                      overflow-hidden"
           style={{
-            backgroundImage: `url(/cartridge.png)`, // put cartridge.png in /public
+            backgroundImage: `url(/cartridge.webp)`, // put cartridge.webp in /public
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
