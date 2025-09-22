@@ -78,6 +78,10 @@ function PongMiniGame({ open, onClose }) {
   const playerScoreRef = useRef(0);
   const aiScoreRef = useRef(0);
 
+  const paddleSfx = useMemo(() => new Audio("/sfx/hit.mp3"), []);
+  const wallSfx = useMemo(() => new Audio("/sfx/wall.mp3"), []);
+  const scoreSfx = useMemo(() => new Audio("/sfx/score.mp3"), []);
+
   useEffect(() => {
     if (!open) return;
     const canvas = canvasRef.current;
@@ -96,13 +100,6 @@ function PongMiniGame({ open, onClose }) {
       br = 5;
 
     let anim;
-
-    // SFX
-    const sfx = {
-      paddle: () => new Audio("/sfx/hit.mp3").play(),
-      wall: () => new Audio("/sfx/wall.mp3").play(),
-      score: () => new Audio("/sfx/score.mp3").play(),
-    };
 
     const draw = () => {
       // background
@@ -144,31 +141,36 @@ function PongMiniGame({ open, onClose }) {
       // wall collisions
       if (by < br || by > h - br) {
         bvy *= -1;
-        sfx.wall();
+        wallSfx.currentTime = 0;
+        wallSfx.play();
       }
 
       // paddle collisions
       if (bx - br < 10 + paddleW && by > p1y && by < p1y + paddleH) {
         bvx = Math.abs(bvx) * 1.05; // speed up slightly
         bvy += (Math.random() - 0.5) * 2; // angle variation
-        sfx.paddle();
+        paddleSfx.currentTime = 0;
+        paddleSfx.play();
       }
       if (bx + br > w - 10 - paddleW && by > p2y && by < p2y + paddleH) {
         bvx = -Math.abs(bvx) * 1.05;
         bvy += (Math.random() - 0.5) * 2;
-        sfx.paddle();
+        paddleSfx.currentTime = 0;
+        paddleSfx.play();
       }
 
       // scoring
       if (bx < 0) {
         aiScoreRef.current++;
         resetBall();
-        sfx.score();
+        scoreSfx.currentTime = 0;
+        scoreSfx.play();
       }
       if (bx > w) {
         playerScoreRef.current++;
         resetBall(true);
-        sfx.score();
+        scoreSfx.currentTime = 0;
+        scoreSfx.play();
       }
 
       draw();
@@ -305,9 +307,6 @@ export default function App() {
       ? "dark"
       : "light"
   );
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-  }, [theme]);
 
   const [entered, setEntered] = useState(false);
   const [egg, setEgg] = useState(false);
@@ -526,11 +525,26 @@ export default function App() {
                 <div className="relative w-8 flex flex-col items-center">
                   {/* Track background */}
                   <div className="relative w-2 h-full border-2 border-black dark:border-white bg-neutral-800">
+
                     {/* XP Fill (progress gauge) */}
                     <div
                       className="absolute bottom-0 left-0 w-full bg-[var(--color-brand)] pixelated z-0"
                       style={{ height: `${(2 / jobs.length) * 100}%` }} // auto-fill to current level
-                    />
+                    >
+                      {/* Sparks emitter anchored at the top of the fill */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2">
+                        {[...Array(4)].map((_, i) => (
+                          <div
+                            key={i}
+                            className="absolute left-1/2 -translate-x-1/2 w-2 h-2 bg-[var(--color-brand)] pixelated animate-pixel-spark"
+                            style={{
+                              animationDelay: `${i * 0.2}s`,
+                              left: `${Math.random() * 10 - 5}px`,
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
                   </div>
 
                   {/* Level Nodes (auto from jobs array) */}
@@ -624,7 +638,7 @@ export default function App() {
                 </a>
 
                 {/* Achievement Badges */}
-                <div className="grid sm:grid-cols-3 gap-3 text-sm font-body">
+                <div className="grid sm:grid-cols-3 gap-3 text-sm font-body text-center">
                   <div className="px-4 py-2 rounded-xl border-[var(--brand)] bg-[var(--color-brand)] text-[var(--brand)] shadow-[0_0_0_6px_rgba(0,0,0,0.2)]">
                     🏆 President’s List — Winter 2024
                   </div>

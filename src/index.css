@@ -192,3 +192,18 @@ button:focus-visible {
 .pixelated {
   image-rendering: pixelated;
 }
+
+@keyframes pixel-spark {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.8);
+  }
+}
+
+.animate-pixel-spark {
+  animation: pixel-spark 0.8s infinite;
+}
