@@ -36,44 +36,119 @@ function useKonami(onUnlock) {
 // Pong mini-game
 function PongMiniGame({ open, onClose }) {
   const canvasRef = useRef(null);
+  const playerScoreRef = useRef(0);
+  const aiScoreRef = useRef(0);
+
   useEffect(() => {
     if (!open) return;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     let w = canvas.width, h = canvas.height;
+
     const paddleH = 60, paddleW = 8;
     let p1y = (h - paddleH) / 2;
     let p2y = (h - paddleH) / 2;
-    let by = h/2, bx = w/2, bvx = 3, bvy = 2, br = 4;
+    let by = h / 2, bx = w / 2, bvx = 4, bvy = 3, br = 5;
+
     let anim;
 
+    // SFX 
+    const sfx = {
+      paddle: () => new Audio("/sfx/hit.mp3").play(),
+      wall: () => new Audio("/sfx/wall.mp3").play(),
+      score: () => new Audio("/sfx/score.mp3").play(),
+    };
+
     const draw = () => {
-      ctx.fillStyle = "#0a0a0a"; ctx.fillRect(0,0,w,h);
+      // background
+      ctx.fillStyle = "#0a0a0a";
+      ctx.fillRect(0, 0, w, h);
+
+      // dashed center line
       ctx.fillStyle = "#00ff90";
-      for (let y=0;y<h;y+=10) ctx.fillRect(w/2-1, y, 2, 6);
+      for (let y = 0; y < h; y += 12) ctx.fillRect(w / 2 - 1, y, 2, 8);
+
+      // paddles
       ctx.fillRect(10, p1y, paddleW, paddleH);
-      ctx.fillRect(w-10-paddleW, p2y, paddleW, paddleH);
-      ctx.beginPath(); ctx.arc(bx,by,br,0,Math.PI*2); ctx.fill();
+      ctx.fillRect(w - 10 - paddleW, p2y, paddleW, paddleH);
+
+      // ball
+      ctx.beginPath();
+      ctx.arc(bx, by, br, 0, Math.PI * 2);
+      ctx.fill();
+
+      // score
+      ctx.font = "20px monospace";
+      ctx.textAlign = "center";
+      ctx.fillText(playerScoreRef.current, w / 2 - 40, 30);
+      ctx.fillText(aiScoreRef.current, w / 2 + 40, 30);
     };
 
     const step = () => {
-      p2y += (by - (p2y + paddleH/2)) * 0.05;
-      bx += bvx; by += bvy;
-      if (by < br || by > h-br) bvy *= -1;
-      if (bx-br < 10+paddleW && by>p1y && by<p1y+paddleH) { bvx = Math.abs(bvx); }
-      if (bx+br > w-10-paddleW && by>p2y && by<p2y+paddleH) { bvx = -Math.abs(bvx); }
-      if (bx < 0 || bx > w) { bx = w/2; by = h/2; bvx *= -1; }
+      // Opponent AI: follows ball but with reaction delay + error
+      const aiCenter = p2y + paddleH / 2;
+      const target = by + (Math.random() * 40 - 20); // "mistake offset"
+      if (aiCenter < target - 10) p2y += 4; // move faster than before
+      else if (aiCenter > target + 10) p2y -= 4;
+      p2y = Math.max(0, Math.min(h - paddleH, p2y));
+
+      // ball movement
+      bx += bvx;
+      by += bvy;
+
+      // wall collisions
+      if (by < br || by > h - br) {
+        bvy *= -1;
+        sfx.wall();
+      }
+
+      // paddle collisions
+      if (bx - br < 10 + paddleW && by > p1y && by < p1y + paddleH) {
+        bvx = Math.abs(bvx) * 1.05; // speed up slightly
+        bvy += (Math.random() - 0.5) * 2; // angle variation
+        sfx.paddle();
+      }
+      if (bx + br > w - 10 - paddleW && by > p2y && by < p2y + paddleH) {
+        bvx = -Math.abs(bvx) * 1.05;
+        bvy += (Math.random() - 0.5) * 2;
+        sfx.paddle();
+      }
+
+      // scoring
+      if (bx < 0) {
+        aiScoreRef.current++;
+        resetBall();
+        sfx.score();
+      }
+      if (bx > w) {
+        playerScoreRef.current++;
+        resetBall(true);
+        sfx.score();
+      }
+
       draw();
       anim = requestAnimationFrame(step);
     };
 
+    const resetBall = (towardsAI = false) => {
+      bx = w / 2;
+      by = h / 2;
+      bvx = (towardsAI ? 4 : -4) * (Math.random() > 0.5 ? 1 : -1);
+      bvy = (Math.random() > 0.5 ? 3 : -3);
+    };
+
     const onMouseMove = (e) => {
       const rect = canvas.getBoundingClientRect();
-      p1y = Math.max(0, Math.min(h - paddleH, e.clientY - rect.top - paddleH/2));
+      p1y = Math.max(0, Math.min(h - paddleH, e.clientY - rect.top - paddleH / 2));
     };
+
     canvas.addEventListener("mousemove", onMouseMove);
     anim = requestAnimationFrame(step);
-    return () => { cancelAnimationFrame(anim); canvas.removeEventListener("mousemove", onMouseMove); };
+
+    return () => {
+      cancelAnimationFrame(anim);
+      canvas.removeEventListener("mousemove", onMouseMove);
+    };
   }, [open]);
 
   if (!open) return null;
@@ -81,11 +156,16 @@ function PongMiniGame({ open, onClose }) {
     <div className="fixed inset-0 z-[60] bg-black/80 flex items-center justify-center p-4">
       <div className="bg-neutral-900 border-4 border-[var(--brand)] rounded-2xl p-4 w-[720px] max-w-full shadow-2xl">
         <div className="flex items-center justify-between text-[var(--brand)] font-mono">
-          <span>PONG .exe</span>
-          <button className="px-3 py-1 border border-[var(--brand)] hover:bg-[var(--brand)] hover:text-black" onClick={onClose}>EXIT</button>
+          <span>PONG.exe</span>
+          <button
+            className="px-3 py-1 border border-[var(--brand)] hover:bg-[var(--brand)] hover:text-black"
+            onClick={onClose}
+          >
+            EXIT
+          </button>
         </div>
         <div className="mt-3">
-          <canvas ref={canvasRef} width={680} height={360} className="w-full"/>
+          <canvas ref={canvasRef} width={680} height={360} className="w-full" />
         </div>
         <p className="font-body text-body">Move your mouse to control the left paddle.</p>
       </div>

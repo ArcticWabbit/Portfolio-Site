@@ -162,7 +162,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
+/* Used in Noise component */
 @keyframes flicker {
   from { opacity: 0.95; }
   to   { opacity: 1; }
