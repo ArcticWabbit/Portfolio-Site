@@ -12,7 +12,6 @@ const GITHUB = "https://github.com/ArcticWabbit";
 const EMAIL = "mmahin@svsu.edu";
 const PHONE = "(989) 372-5691";
 const RESUME_URL = "/Mirza_Resume_2025.docx";
-const BACKGROUND_URL = "/fallen_kingdom_3840x2160.png";
 const YT_VIDEO_ID = "dQw4w9WgXcQ"; // replace with demo video id
 
 // Konami code listener
@@ -207,6 +206,13 @@ export default function App() {
           waveFrequency={3}
           waveSpeed={0.05}
         />
+
+        <motion.div
+          initial={false} // don’t animate on mount
+          animate={{ width: entered ? "60%" : "47%" }} // expand on Start
+          transition={{ duration: 0 }}
+          className="absolute inset-y-0 left-0 bg-black dark:bg-neutral-900 left-mask"
+        />
 </div>
 
       {/* NAV */}
@@ -263,17 +269,20 @@ export default function App() {
           <div className="mt-8 h-16 flex justify-center items-center">
             <AnimatePresence>
               {!entered && (
-                <motion.button
-                  onClick={() => setEntered(true)}
-                  initial={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.5 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="px-6 py-3 border-4 rounded-xl font-pixel text-xs text-[var(--brand)] border-[var(--brand)] shadow-[0_0_0_4px_rgba(0,0,0,0.2)]"
-                >
-                  ▶ PRESS START
-                </motion.button>
+                <>
+                  {/* Start button */}
+                  <motion.button
+                    onClick={() => setEntered(true)}
+                    initial={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.5 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="px-6 py-3 border-4 rounded-xl font-pixel text-xs text-[var(--brand)] border-[var(--brand)] shadow-[0_0_0_4px_rgba(0,0,0,0.2)]"
+                  >
+                    ▶ PRESS START
+                  </motion.button>
+                </>
               )}
             </AnimatePresence>
           </div>

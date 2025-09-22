@@ -109,8 +109,15 @@ button:focus-visible {
   to   { opacity: 1; }
 }
 
-/* For DivderFade */
-@keyframes pulseGlow {
-  0%, 100% { filter: blur(2px) brightness(1.1); }
-  50% { filter: blur(3px) brightness(1.4); }
+/* For gradient line */
+.left-mask {
+  -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: right;
+  -webkit-mask-size: 100% 100%;
+  mask-image: linear-gradient(to right, black 90%, transparent 100%);
+  mask-repeat: no-repeat;
+  mask-position: right;
+  mask-size: 100% 100%;
 }
+
