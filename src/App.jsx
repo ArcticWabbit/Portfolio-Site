@@ -197,17 +197,16 @@ export default function App() {
     <div className="min-h-screen text-neutral-900 dark:text-neutral-100 bg-neutral-50 dark:bg-neutral-900 transition-colors">
       {/* BACKGROUND */}
       <div className="fixed inset-0 -z-10">
-  // Dither component settings
-  <Dither
-    waveColor={[0, 0.7, 0.55]}
-    disableAnimation={false}
-    enableMouseInteraction={true}
-    mouseRadius={0.3}
-    colorNum={8}
-    waveAmplitude={0.3}
-    waveFrequency={3}
-    waveSpeed={0.05}
-  />
+        <Dither
+          waveColor={[0, 0.7, 0.55]}
+          disableAnimation={false}
+          enableMouseInteraction={true}
+          mouseRadius={0.3}
+          colorNum={8}
+          waveAmplitude={0.3}
+          waveFrequency={3}
+          waveSpeed={0.05}
+        />
 </div>
 
       {/* NAV */}
@@ -252,7 +251,7 @@ export default function App() {
             <ASCIIText
               text={YOUR_NAME}
               enableWaves={true}
-              asciiFontSize={2}   // tweak for density
+              asciiFontSize={3}   // tweak for density
               textFontSize={50}
             />
           </div>
@@ -292,7 +291,6 @@ export default function App() {
                         border-neutral-900/70 dark:border-neutral-100/60 
                         shadow-[0_0_0_6px_rgba(0,0,0,0.15)] overflow-hidden">
 
-          // Noise component settings
           {/* Noise overlay */}
           <Noise patternSize={200} patternAlpha={8} />
 

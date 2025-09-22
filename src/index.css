@@ -108,3 +108,9 @@ button:focus-visible {
   from { opacity: 0.95; }
   to   { opacity: 1; }
 }
+
+/* For DivderFade */
+@keyframes pulseGlow {
+  0%, 100% { filter: blur(2px) brightness(1.1); }
+  50% { filter: blur(3px) brightness(1.4); }
+}
