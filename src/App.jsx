@@ -188,6 +188,7 @@ export default function App() {
   ]), []);
 
   const projects = [
+    { title: "Portfolio Site", href: "https://github.com/ArcticWabbit/Portfolio-Site", code: "https://github.com/ArcticWabbit/Portfolio-Site", year: "2025" },
     { title: "Art Blog Site", href: "https://www.cinnamongum.art", code: null, year: "2023" },
     { title: "Mario Clone (Clorio)", href: "https://github.com/ArcticWabbit/Clorio", code: "https://github.com/ArcticWabbit/Clorio", year: "2022" },
   ];
