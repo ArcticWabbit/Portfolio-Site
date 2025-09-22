@@ -1,11 +1,11 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 
 const Noise = ({
   patternSize = 250,
   patternScaleX = 1,
   patternScaleY = 1,
   patternRefreshInterval = 2,
-  patternAlpha = 15
+  patternAlpha = 15,
 }) => {
   const grainRef = useRef(null);
 
@@ -13,7 +13,7 @@ const Noise = ({
     const canvas = grainRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d', { alpha: true });
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     let frame = 0;
@@ -25,8 +25,8 @@ const Noise = ({
       canvas.width = canvasSize;
       canvas.height = canvasSize;
 
-      canvas.style.width = '100vw';
-      canvas.style.height = '100vh';
+      canvas.style.width = "100vw";
+      canvas.style.height = "100vh";
     };
 
     const drawGrain = () => {
@@ -37,7 +37,7 @@ const Noise = ({
         const r = Math.random() * 255;
         const g = Math.random() * 255 * 0.9; // slightly dimmer green
         const b = Math.random() * 255 * 0.8; // slightly dimmer blue
-        data[i]     = r;
+        data[i] = r;
         data[i + 1] = g;
         data[i + 2] = b;
         data[i + 3] = patternAlpha;
@@ -54,23 +54,29 @@ const Noise = ({
       animationId = window.requestAnimationFrame(loop);
     };
 
-    window.addEventListener('resize', resize);
+    window.addEventListener("resize", resize);
     resize();
     loop();
 
     return () => {
-      window.removeEventListener('resize', resize);
+      window.removeEventListener("resize", resize);
       window.cancelAnimationFrame(animationId);
     };
-  }, [patternSize, patternScaleX, patternScaleY, patternRefreshInterval, patternAlpha]);
+  }, [
+    patternSize,
+    patternScaleX,
+    patternScaleY,
+    patternRefreshInterval,
+    patternAlpha,
+  ]);
 
   return (
     <canvas
       className="pointer-events-none absolute inset-0 w-full h-full"
       ref={grainRef}
       style={{
-            imageRendering: 'pixelated',
-            animation: 'flicker 0.08s infinite alternate'
+        imageRendering: "pixelated",
+        animation: "flicker 0.08s infinite alternate",
       }}
     />
   );

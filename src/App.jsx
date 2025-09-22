@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Dither from "./components/Dither";
 import Noise from "./components/Noise";
 import ASCIIText from "./components/ASCIIText";
+import LevelNode from "./components/LevelNode";
 
 // -------------
 // QUICK CONFIG
@@ -13,6 +14,30 @@ const EMAIL = "mmahin@svsu.edu";
 const PHONE = "(989) 372-5691";
 const RESUME_URL = "/Mirza_Resume_2025.docx";
 const YT_VIDEO_ID = "dQw4w9WgXcQ"; // replace with demo video id
+
+const jobs = [
+  {
+    level: 3,
+    year: "2025–Present",
+    title: "Alumni Relations Intern — SVSU",
+    sub: "Data QA, content & event ops, reporting",
+    filled: false,
+  },
+  {
+    level: 2,
+    year: "2024–2025",
+    title: "IT Support Help Desk — SVSU",
+    sub: "Troubleshooting, ticketing, remote support",
+    filled: true,
+  },
+  {
+    level: 1,
+    year: "2023–2024",
+    title: "IT Manager — Raz Flour Mills",
+    sub: "Network & systems upkeep, team coordination",
+    filled: true,
+  },
+];
 
 // Konami code listener
 function useKonami(onUnlock) {
@@ -263,8 +288,7 @@ function Section({ id, title, children }) {
 
 function LevelItem({ level, title, sub, year }) {
   return (
-    <div className="relative pl-10 pb-8 font-body">
-      <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-[var(--brand)] shadow-[0_0_0_4px_rgba(26,120,109,.25)]" />
+    <div className="relative pb-12 font-body">
       <div className="text-sm opacity-70">
         Lv.{level} · {year}
       </div>
@@ -497,26 +521,40 @@ export default function App() {
 
             {/* EXPERIENCE */}
             <Section id="experience" title="Experience / Level Map">
-              <div className="relative pl-4">
-                <div className="absolute left-3 top-2 bottom-6 w-1 bg-gradient-to-b from-[var(--brand)]/80 to-transparent" />
-                <LevelItem
-                  level={3}
-                  year="2025–Present"
-                  title="Alumni Relations Intern — SVSU"
-                  sub="Data QA, content & event ops, reporting"
-                />
-                <LevelItem
-                  level={2}
-                  year="2024–2025"
-                  title="IT Support Help Desk — SVSU"
-                  sub="Troubleshooting, ticketing, remote support"
-                />
-                <LevelItem
-                  level={1}
-                  year="2023–2024"
-                  title="IT Manager — Raz Flour Mills"
-                  sub="Network & systems upkeep, team coordination"
-                />
+              <div className="relative flex">
+                {/* XP Track (left side) */}
+                <div className="relative w-8 flex flex-col items-center">
+                  {/* Track background */}
+                  <div className="relative w-2 h-full border-2 border-black dark:border-white bg-neutral-800">
+                    {/* XP Fill (progress gauge) */}
+                    <div
+                      className="absolute bottom-0 left-0 w-full bg-[var(--color-brand)] pixelated z-0"
+                      style={{ height: `${(2 / jobs.length) * 100}%` }} // auto-fill to current level
+                    />
+                  </div>
+
+                  {/* Level Nodes (auto from jobs array) */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-between z-15 py-18">
+                    {jobs.map((job, i) => (
+                      <LevelNode key={i} filled={job.filled} />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Experience Items (right side) */}
+                <div className="flex-1 pl-8 pt-10">
+                  <div className="flex flex-col gap-12 h-full">
+                    {jobs.map((job, i) => (
+                      <LevelItem
+                        key={i}
+                        level={job.level}
+                        year={job.year}
+                        title={job.title}
+                        sub={job.sub}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             </Section>
 

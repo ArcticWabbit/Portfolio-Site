@@ -1,7 +1,7 @@
 /* Local Pixel Game font */
 @font-face {
-  font-family: 'Pixel Game';
-  src: url('./assets/fonts/pixel-game.regular.otf') format('opentype');
+  font-family: "Pixel Game";
+  src: url("./assets/fonts/pixel-game.regular.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -22,7 +22,7 @@
 @theme {
   --font-pixel: "Pixel Game", monospace;
   --font-body: "Atarian System", sans-serif;
-  --color-brand: #1A786D;
+  --color-brand: #1a786d;
 
   --text-display: 7rem;
   --text-heading: 2.25rem;
@@ -66,61 +66,65 @@ body {
   /* Cursor hotspots might need tweaking
      Works for now */
   cursor: url("/cursors/default.png") 0 0, default;
-  }
+}
 
-  /* Links & buttons (hand) */
-  a, button {
-    cursor: url("/cursors/hand.png") 4 2, pointer !important;
-  }
+/* Links & buttons (hand) */
+a,
+button {
+  cursor: url("/cursors/hand.png") 4 2, pointer !important;
+}
 
-  /* Text (I-beam) */
-  input, textarea {
-    cursor: url("/cursors/text.png") 7 8, text;
-  }
+/* Text (I-beam) */
+input,
+textarea {
+  cursor: url("/cursors/text.png") 7 8, text;
+}
 
-  /* Hourglass / loading */
-  body.wait, .loading {
-    cursor: url("/cursors/hourglass.png") 8 8, wait;
-  }
+/* Hourglass / loading */
+body.wait,
+.loading {
+  cursor: url("/cursors/hourglass.png") 8 8, wait;
+}
 
-  /* Move */
-  .move, [draggable="true"] {
-    cursor: url("/cursors/move.png") 8 8, move;
-  }
+/* Move */
+.move,
+[draggable="true"] {
+  cursor: url("/cursors/move.png") 8 8, move;
+}
 
-  /* Not allowed */
-  .not-allowed {
-    cursor: url("/cursors/not-allowed.png") 8 8, not-allowed;
-  }
+/* Not allowed */
+.not-allowed {
+  cursor: url("/cursors/not-allowed.png") 8 8, not-allowed;
+}
 
-  /* Resize – horizontal */
-  .resize-x {
-    cursor: url("/cursors/resize-x.png") 8 8, ew-resize;
-  }
+/* Resize – horizontal */
+.resize-x {
+  cursor: url("/cursors/resize-x.png") 8 8, ew-resize;
+}
 
-  /* Resize – vertical */
-  .resize-y {
-    cursor: url("/cursors/resize-y.png") 8 8, ns-resize;
-  }
+/* Resize – vertical */
+.resize-y {
+  cursor: url("/cursors/resize-y.png") 8 8, ns-resize;
+}
 
-  /* Resize – diagonal (top-left ↔ bottom-right) */
-  .resize-nesw {
-    cursor: url("/cursors/resize-nesw.png") 8 8, nesw-resize;
-  }
+/* Resize – diagonal (top-left ↔ bottom-right) */
+.resize-nesw {
+  cursor: url("/cursors/resize-nesw.png") 8 8, nesw-resize;
+}
 
-  /* Resize – diagonal (top-right ↔ bottom-left) */
-  .resize-nwse {
-    cursor: url("/cursors/resize-nwse.png") 8 8, nwse-resize;
-  }
+/* Resize – diagonal (top-right ↔ bottom-left) */
+.resize-nwse {
+  cursor: url("/cursors/resize-nwse.png") 8 8, nwse-resize;
+}
 
-  /* Zoom in */
-  .zoom-in {
-    cursor: url("/cursors/zoom-in.png") 8 8, zoom-in;
-  }
+/* Zoom in */
+.zoom-in {
+  cursor: url("/cursors/zoom-in.png") 8 8, zoom-in;
+}
 
-  /* Zoom out */
-  .zoom-out {
-    cursor: url("/cursors/zoom-out.png") 8 8, zoom-out;
+/* Zoom out */
+.zoom-out {
+  cursor: url("/cursors/zoom-out.png") 8 8, zoom-out;
 }
 
 /* Headings */
@@ -164,8 +168,12 @@ button:focus-visible {
 }
 /* Used in Noise component */
 @keyframes flicker {
-  from { opacity: 0.95; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0.95;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* For gradient line */
@@ -178,4 +186,9 @@ button:focus-visible {
   mask-repeat: no-repeat;
   mask-position: right;
   mask-size: 100% 100%;
+}
+
+/* LevelBar */
+.pixelated {
+  image-rendering: pixelated;
 }
