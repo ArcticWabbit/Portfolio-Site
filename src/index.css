@@ -179,21 +179,13 @@ button:focus-visible {
 /* For gradient line */
 .left-mask {
   /* ===== Standard spec (Firefox, modern browsers) ===== */
-  mask-image: linear-gradient(
-    to right,
-    black 75%,
-    transparent 100%
-  );
+  mask-image: linear-gradient(to right, black 75%, transparent 100%);
   mask-repeat: no-repeat;
   mask-size: 100% 100%;
   mask-composite: intersect;
 
   /* ===== WebKit prefixed (Chrome, Safari, Edge) ===== */
-  -webkit-mask-image: linear-gradient(
-    to right,
-    black 75%,
-    transparent 100%
-  );
+  -webkit-mask-image: linear-gradient(to right, black 75%, transparent 100%);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   -webkit-mask-composite: destination-in;

@@ -519,7 +519,6 @@ export default function App() {
                 <div className="relative w-8 flex flex-col items-center">
                   {/* Track background */}
                   <div className="relative w-2 h-full border-2 border-black dark:border-white bg-neutral-800">
-
                     {/* XP Fill (progress gauge) */}
                     <div
                       className="absolute bottom-0 left-0 w-full bg-[var(--color-brand)] pixelated z-0"
@@ -657,28 +656,47 @@ export default function App() {
             {/* CONTACT */}
             <Section id="contact" title="Message Board">
               <div className="max-w-3xl mx-auto border-4 rounded-2xl p-4 bg-neutral-100/90 dark:bg-neutral-800/80 border-neutral-900/70 dark:border-neutral-100/60">
-                <form className="grid gap-3">
+                <form
+                  name="contact"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  action="/thankyou"
+                  className="grid gap-3"
+                >
+                  {/* Hidden inputs required for Netlify */}
+                  <input type="hidden" name="form-name" value="contact" />
+                  <input type="hidden" name="bot-field" />
+
                   <input
                     className="px-3 py-2 rounded-lg bg-white/70 dark:bg-neutral-900/50 border border-neutral-300 dark:border-neutral-700"
+                    type="text"
+                    name="name"
                     placeholder="Your name"
+                    required
                   />
                   <input
                     className="px-3 py-2 rounded-lg bg-white/70 dark:bg-neutral-900/50 border border-neutral-300 dark:border-neutral-700"
+                    type="email"
+                    name="email"
                     placeholder="Email"
+                    required
                   />
                   <textarea
                     rows={4}
+                    name="message"
                     className="px-3 py-2 rounded-lg bg-white/70 dark:bg-neutral-900/50 border border-neutral-300 dark:border-neutral-700"
                     placeholder="Quest details…"
+                    required
                   />
                   <button
-                    type="button"
-                    onClick={() => (window.location.href = `mailto:${EMAIL}`)}
-                    className="justify-self-start px-5 py-2 border-4 rounded-xl font-pixel text-xs border-[var(--brand)] text-[var(--brand)]"
+                    type="submit"
+                    className="justify-self-start px-5 py-2 border-4 rounded-xl font-pixel text-xs border-[var(--brand)] text-[var(--brand)] hover:bg-[var(--brand)] hover:text-white transition"
                   >
                     📫 Send
                   </button>
                 </form>
+
                 <div className="mt-3 text-xs opacity-70">
                   Or email me directly:{" "}
                   <a
