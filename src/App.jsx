@@ -344,12 +344,6 @@ export default function App() {
       code: null,
       year: "2023",
     },
-    {
-      title: "Mario Clone (Clorio)",
-      href: "https://github.com/ArcticWabbit/Clorio",
-      code: "https://github.com/ArcticWabbit/Clorio",
-      year: "2022",
-    },
   ];
 
   return (
@@ -369,7 +363,7 @@ export default function App() {
 
         <motion.div
           initial={false} // don’t animate on mount
-          animate={{ width: entered ? "60%" : "47%" }} // expand on Start
+          animate={{ width: entered ? "70%" : "56%" }} // expand on Start
           transition={{ duration: 0 }}
           className="absolute inset-y-0 left-0 bg-black dark:bg-neutral-900 left-mask"
         />
