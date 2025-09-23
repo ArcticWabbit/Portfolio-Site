@@ -60,7 +60,6 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 
   /* Cursor hotspots might need tweaking
@@ -177,6 +176,7 @@ button:focus-visible {
 }
 
 /* For gradient line */
+
 .left-mask {
   /* ===== Standard spec (Firefox, modern browsers) ===== */
   mask-image: linear-gradient(to right, black 75%, transparent 100%);
@@ -189,6 +189,13 @@ button:focus-visible {
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   -webkit-mask-composite: destination-in;
+}
+
+@media (max-width: 768px) {
+  .left-mask {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
 }
 
 /* LevelBar */

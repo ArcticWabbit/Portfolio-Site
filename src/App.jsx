@@ -15,6 +15,11 @@ const PHONE = "(989) 372-5691";
 const RESUME_URL = "/Mirza_Resume_2025.docx";
 const YT_VIDEO_ID = "dQw4w9WgXcQ"; // replace with demo video id
 
+const isMobile =
+  window.innerWidth < 768 ||
+  "ontouchstart" in window ||
+  navigator.maxTouchPoints > 0;
+
 const jobs = [
   {
     level: 3,
@@ -245,13 +250,15 @@ function CRTFrame({ videoId }) {
         />
 
         {/* Noise overlay */}
-        <Noise
-          patternSize={200}
-          patternScaleX={1}
-          patternScaleY={1}
-          patternRefreshInterval={2}
-          patternAlpha={8}
-        />
+        {!isMobile && (
+          <Noise
+            patternSize={200}
+            patternScaleX={1}
+            patternScaleY={1}
+            patternRefreshInterval={2}
+            patternAlpha={8}
+          />
+        )}
 
         {/* Scanline overlay */}
         <div className="pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_2px)] bg-[length:100%_4px]"></div>
@@ -352,8 +359,8 @@ export default function App() {
       <div className="fixed inset-0 -z-10">
         <Dither
           waveColor={[0, 0.7, 0.55]}
-          disableAnimation={false}
-          enableMouseInteraction={true}
+          disableAnimation={entered && isMobile}
+          enableMouseInteraction={!isMobile}
           mouseRadius={0.3}
           colorNum={8}
           waveAmplitude={0.3}
@@ -471,7 +478,7 @@ export default function App() {
                         shadow-[0_0_0_6px_rgba(0,0,0,0.15)] overflow-hidden"
               >
                 {/* Noise overlay */}
-                <Noise patternSize={200} patternAlpha={8} />
+                {!isMobile && <Noise patternSize={200} patternAlpha={8} />}
 
                 {/* Content */}
                 <div className="relative z-10">
@@ -590,7 +597,7 @@ export default function App() {
                       }}
                     >
                       {/* Noise overlay */}
-                      <Noise patternAlpha={8} />
+                      {!isMobile && <Noise patternAlpha={8} />}
 
                       <div className="absolute inset-0 bg-black/40 flex flex-col p-4">
                         <div className="text-base opacity-60">{p.year}</div>
@@ -661,7 +668,7 @@ export default function App() {
                   method="POST"
                   data-netlify="true"
                   data-netlify-honeypot="bot-field"
-                  action="/thankyou"
+                  action="/pages/success"
                   className="grid gap-3"
                 >
                   {/* Hidden inputs required for Netlify */}
