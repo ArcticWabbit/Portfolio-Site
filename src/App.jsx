@@ -366,7 +366,7 @@ export default function App() {
 
         <motion.div
           initial={false} // don’t animate on mount
-          animate={{ width: entered ? "70%" : "56%" }} // expand on Start
+          animate={{ width: entered ? "85%" : "66%" }} // expand on Start
           transition={{ duration: 0 }}
           className="absolute inset-y-0 left-0 bg-black dark:bg-neutral-900 left-mask hidden md:block"
         />
@@ -420,11 +420,11 @@ export default function App() {
           transition={{ duration: 1 }}
           className="max-w-3xl"
         >
-          <div className="relative mx-auto w-[600px] flex justify-center items-center gap-1">
-            <div className="relative w-42 h-42">
+          <div className="relative mx-auto w-[300px] md:w-[600px] flex justify-center items-center gap-1">
+            <div className="relative w-38 h-38">
               <ASCIIText text="Maeen" asciiFontSize={3} textFontSize={70} />
             </div>
-            <div className="relative w-42 h-42">
+            <div className="relative w-38 h-38">
               <ASCIIText text="Mirza" asciiFontSize={3} textFontSize={70} />
             </div>
           </div>
