@@ -373,7 +373,6 @@ export default function App() {
       </div>
 
       {/* NAV */}
-      {/* NAV */}
       <nav className="sticky top-0 z-40 backdrop-blur bg-white/50 dark:bg-neutral-900/40 border-b border-neutral-200/50 dark:border-neutral-700/50">
         <div className="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
           {/* Brand stays Pixel */}
@@ -421,14 +420,14 @@ export default function App() {
           transition={{ duration: 1 }}
           className="max-w-3xl"
         >
-<div className="flex justify-center items-center gap-3 md:gap-0">
-  <div className="relative w-32 h-34 md:w-[180px] md:h-42">
-    <ASCIIText text="Maeen" asciiFontSize={3} textFontSize={70} />
-  </div>
-  <div className="relative w-32 h-34 md:w-[180px] md:h-42">
-    <ASCIIText text="Mirza" asciiFontSize={3} textFontSize={70} />
-  </div>
-</div>
+          <div className="relative mx-auto w-[600px] flex justify-center items-center gap-1">
+            <div className="relative w-42 h-42">
+              <ASCIIText text="Maeen" asciiFontSize={3} textFontSize={70} />
+            </div>
+            <div className="relative w-42 h-42">
+              <ASCIIText text="Mirza" asciiFontSize={3} textFontSize={70} />
+            </div>
+          </div>
 
           <p className="font-body text-body opacity-90 -mt-6">
             Programmer • CS Major • Human
