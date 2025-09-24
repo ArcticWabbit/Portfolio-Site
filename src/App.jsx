@@ -330,10 +330,6 @@ export default function App() {
       { label: "SQL", icon: "🗄️" },
       { label: "Git/GitHub", icon: "🌿" },
       { label: "Linux", icon: "🐧" },
-      { label: "VS Code", icon: "🧩" },
-      { label: "OOP", icon: "🧠" },
-      { label: "Databases", icon: "📚" },
-      { label: "Tech Support", icon: "🛠️" },
     ],
     []
   );
