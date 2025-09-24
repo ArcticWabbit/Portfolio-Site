@@ -372,7 +372,7 @@ export default function App() {
           initial={false} // don’t animate on mount
           animate={{ width: entered ? "70%" : "56%" }} // expand on Start
           transition={{ duration: 0 }}
-          className="absolute inset-y-0 left-0 bg-black dark:bg-neutral-900 left-mask"
+          className="absolute inset-y-0 left-0 bg-black dark:bg-neutral-900 left-mask hidden md:block"
         />
       </div>
 
@@ -425,14 +425,14 @@ export default function App() {
           transition={{ duration: 1 }}
           className="max-w-3xl"
         >
-          <div className="relative mx-auto w-[600px] h-44">
-            <ASCIIText
-              text={YOUR_NAME}
-              enableWaves={true}
-              asciiFontSize={3} // tweak for density
-              textFontSize={50}
-            />
-          </div>
+<div className="flex justify-center items-center gap-3 md:gap-0">
+  <div className="relative w-32 h-34 md:w-[180px] md:h-42">
+    <ASCIIText text="Maeen" asciiFontSize={3} textFontSize={70} />
+  </div>
+  <div className="relative w-32 h-34 md:w-[180px] md:h-42">
+    <ASCIIText text="Mirza" asciiFontSize={3} textFontSize={70} />
+  </div>
+</div>
 
           <p className="font-body text-body opacity-90 -mt-6">
             Programmer • CS Major • Human

@@ -191,13 +191,6 @@ button:focus-visible {
   -webkit-mask-composite: destination-in;
 }
 
-@media (max-width: 768px) {
-  .left-mask {
-    mask-image: none !important;
-    -webkit-mask-image: none !important;
-  }
-}
-
 /* LevelBar */
 .pixelated {
   image-rendering: pixelated;
