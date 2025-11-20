@@ -1,3 +1,6 @@
+/* Tailwind v4 import */
+@import "tailwindcss";
+
 /* Local Pixel Game font */
 @font-face {
   font-family: "Pixel Game";
@@ -14,9 +17,6 @@
   font-style: normal;
   font-display: swap;
 }
-
-/* Tailwind v4 import */
-@import "tailwindcss";
 
 /* Tailwind theme tokens */
 @theme {

@@ -272,7 +272,7 @@ function InventoryItem({ label, icon }) {
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
-      className="flex items-center gap-3 px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-neutral-100/70 dark:bg-neutral-800/60 font-body"
+      className="flex items-center gap-3 px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 dark:bg-neutral-800/60 font-body"
     >
       <div className="text-xl">{icon}</div>
       <div className="text-lg">{label}</div>
@@ -345,7 +345,7 @@ export default function App() {
   ];
 
   return (
-    <div className="dark min-h-screen text-neutral-900 dark:text-neutral-100 bg-neutral-50 dark:bg-neutral-900 transition-colors">
+    <div className="min-h-screen dark:text-neutral-100 bg-neutral-900 transition-colors">
       {/* BACKGROUND */}
       <div className="fixed inset-0 -z-10">
         <Dither
@@ -363,12 +363,12 @@ export default function App() {
           initial={false} // don’t animate on mount
           animate={{ width: entered ? "71%" : "56%" }} // expand on Start
           transition={{ duration: 0 }}
-          className="absolute inset-y-0 left-0 bg-black dark:bg-neutral-900 left-mask hidden md:block"
+          className="absolute inset-y-0 left-0 bg-black bg-neutral-900 left-mask hidden md:block"
         />
       </div>
 
       {/* NAV */}
-      <nav className="sticky top-0 z-40 backdrop-blur bg-white/50 dark:bg-neutral-900/40 border-b border-neutral-200/50 dark:border-neutral-700/50">
+      <nav className="sticky top-0 z-40 backdrop-blur bg-neutral-900/40 border-b border-neutral-200/50 dark:border-neutral-700/50">
         <div className="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
           {/* Brand stays Pixel */}
           <a
@@ -463,7 +463,7 @@ export default function App() {
             <Section id="about" title="About">
               <div
                 className="relative max-w-3xl mx-auto border-4 rounded-2xl p-4 
-                        bg-neutral-100/90 dark:bg-neutral-800/80 
+                       dark:bg-neutral-800/80 
                         border-neutral-900/70 dark:border-neutral-100/60 
                         shadow-[0_0_0_6px_rgba(0,0,0,0.15)] overflow-hidden"
               >
@@ -515,7 +515,7 @@ export default function App() {
                 {/* XP Track (left side) */}
                 <div className="relative w-8 flex flex-col items-center">
                   {/* Track background */}
-                  <div className="relative w-2 h-full border-2 border-black dark:border-white bg-neutral-800">
+                  <div className="relative w-2 h-full border-2 border-black bg-neutral-800">
                     {/* XP Fill (progress gauge) */}
                     <div
                       className="absolute bottom-0 left-0 w-full bg-[var(--color-brand)] pixelated z-0"
@@ -652,7 +652,7 @@ export default function App() {
 
             {/* CONTACT */}
             <Section id="contact" title="Message Board">
-              <div className="max-w-3xl mx-auto border-4 rounded-2xl p-4 bg-neutral-100/90 dark:bg-neutral-800/80 border-neutral-900/70 dark:border-neutral-100/60">
+              <div className="max-w-3xl mx-auto border-4 rounded-2xl p-4 dark:bg-neutral-800/80 border-neutral-900/70 dark:border-neutral-100/60">
                 <form
                   name="contact"
                   method="POST"
@@ -666,14 +666,14 @@ export default function App() {
                   <input type="hidden" name="bot-field" />
 
                   <input
-                    className="px-3 py-2 rounded-lg bg-white/70 dark:bg-neutral-900/50 border border-neutral-300 dark:border-neutral-700"
+                    className="px-3 py-2 rounded-lg bg-neutral-900/50 border border-neutral-300 dark:border-neutral-700"
                     type="text"
                     name="name"
                     placeholder="Your name"
                     required
                   />
                   <input
-                    className="px-3 py-2 rounded-lg bg-white/70 dark:bg-neutral-900/50 border border-neutral-300 dark:border-neutral-700"
+                    className="px-3 py-2 rounded-lg bg-neutral-900/50 border border-neutral-300 dark:border-neutral-700"
                     type="email"
                     name="email"
                     placeholder="Email"
@@ -682,7 +682,7 @@ export default function App() {
                   <textarea
                     rows={4}
                     name="message"
-                    className="px-3 py-2 rounded-lg bg-white/70 dark:bg-neutral-900/50 border border-neutral-300 dark:border-neutral-700"
+                    className="px-3 py-2 rounded-lg bg-neutral-900/50 border border-neutral-300 dark:border-neutral-700"
                     placeholder="Quest details…"
                     required
                   />
@@ -739,7 +739,7 @@ export default function App() {
       {/* Mobile Nav */}
       <div
         className="md:hidden fixed bottom-3 left-1/2 -translate-x-1/2 z-40 
-                backdrop-blur bg-white/60 dark:bg-neutral-900/60 
+                backdrop-blur bg-neutral-900/60 
                 border border-neutral-200 dark:border-neutral-700 
                 rounded-full px-3 py-2 flex gap-3 text-base font-body"
       >
