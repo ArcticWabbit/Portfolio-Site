@@ -308,12 +308,7 @@ function LevelItem({ level, title, sub, year }) {
 }
 
 export default function App() {
-  const [theme, setTheme] = useState(() =>
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light"
-  );
+  const [theme, setTheme] = useState("dark");
 
   const [entered, setEntered] = useState(false);
   const [egg, setEgg] = useState(false);
@@ -350,7 +345,7 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen text-neutral-900 dark:text-neutral-100 bg-neutral-50 dark:bg-neutral-900 transition-colors">
+    <div className="dark min-h-screen text-neutral-900 dark:text-neutral-100 bg-neutral-50 dark:bg-neutral-900 transition-colors">
       {/* BACKGROUND */}
       <div className="fixed inset-0 -z-10">
         <Dither
