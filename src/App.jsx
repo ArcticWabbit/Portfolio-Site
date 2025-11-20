@@ -366,7 +366,7 @@ export default function App() {
 
         <motion.div
           initial={false} // don’t animate on mount
-          animate={{ width: entered ? "85%" : "66%" }} // expand on Start
+          animate={{ width: entered ? "71%" : "56%" }} // expand on Start
           transition={{ duration: 0 }}
           className="absolute inset-y-0 left-0 bg-black dark:bg-neutral-900 left-mask hidden md:block"
         />
